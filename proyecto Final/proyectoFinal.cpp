@@ -259,6 +259,8 @@ void CreateObjects()
 		 -0.5f, 0.5f,  -0.5f,	0.0f,	1.0f,		0.0f,	-1.0f,	0.0f,
 	};
 
+
+
 	Mesh *obj1 = new Mesh();
 	obj1->CreateMesh(vertices, indices, 32, 12);
 	meshList.push_back(obj1);
@@ -311,7 +313,7 @@ int main()
 	dirtTexture.LoadTextureA();
 	plainTexture = Texture("Textures/plain.png");
 	plainTexture.LoadTextureA();
-	pisoTexture = Texture("Textures/piso.tga");
+	pisoTexture = Texture("Textures/luna.tga");
 	pisoTexture.LoadTextureA();
 	AgaveTexture = Texture("Textures/Agave.tga");
 	AgaveTexture.LoadTextureA();
@@ -332,14 +334,13 @@ int main()
 	Coche = Model();
 	Coche.LoadModel("Models/coche_p5.obj");
 
-
 	std::vector<std::string> skyboxFaces;
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_lf.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_dn.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_up.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_bk.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_ft.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyLf.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyDwn.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyUp.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyBk.tga");
+	skyboxFaces.push_back("Textures/Skybox/skyFront.tga");
 
 	skybox = Skybox(skyboxFaces);
 
