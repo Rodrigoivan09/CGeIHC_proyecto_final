@@ -76,6 +76,7 @@ Model Camino_M;
 Model Blackhawk_M;
 Model Dado_M;
 Model Coche;
+Model jimmy;
 
 Skybox skybox;
 
@@ -334,6 +335,9 @@ int main()
 	Coche = Model();
 	Coche.LoadModel("Models/coche_p5.obj");
 
+	jimmy = Model();
+	jimmy.LoadModel("Models/jimmy.obj");
+
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
 	skyboxFaces.push_back("Textures/Skybox/skyLf.tga");
@@ -527,6 +531,19 @@ int main()
 		meshList[2]->RenderMesh();
 
 
+
+
+		//·###############################3  JiMMY
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(30, 3.0f, 0.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		jimmy.RenderModel();
+
 			//			alberca				
 
 		model = glm::mat4(1.0);
@@ -546,6 +563,8 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		Coche.RenderModel();
+
+
 
 		model = modelaux;
 		model = glm::translate(model, glm::vec3(-8.0, -1.5f, 3.0f));
