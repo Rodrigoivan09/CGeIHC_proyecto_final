@@ -564,6 +564,7 @@ int main()
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		AgaveTexture.UseTexture();
 		meshList[5]->RenderMesh();
 
 		model = glm::mat4(1.0);
