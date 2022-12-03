@@ -77,6 +77,8 @@ Model Blackhawk_M;
 Model Dado_M;
 Model Coche;
 Model jimmy;
+Model aku;
+Model shrek;
 
 Skybox skybox;
 
@@ -338,6 +340,14 @@ int main()
 	jimmy = Model();
 	jimmy.LoadModel("Models/jimmy.obj");
 
+	aku = Model();
+	aku.LoadModel("Models/Aku_Aku_READY.fbx");
+
+	shrek = Model();
+	shrek.LoadModel("Models/CHARACTER_Shrek.obj");
+
+	
+
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
 	skyboxFaces.push_back("Textures/Skybox/skyLf.tga");
@@ -536,13 +546,36 @@ int main()
 		//·###############################3  JiMMY
 
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(30, 3.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(30, -2.0f, 0.0f));
 		modelaux = model;
-		model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		jimmy.RenderModel();
+
+		//######################  AKU @@@@@@@@@
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(40, 10.0f, 0.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		//aku.RenderModel();
+
+		//###################  SHREK
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(60, -2.0f, 0.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(20.0f, 20.0f, 20.0f));
+		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		shrek.RenderModel();
+
 
 			//			alberca				
 
