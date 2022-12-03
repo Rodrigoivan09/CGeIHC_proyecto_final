@@ -70,6 +70,10 @@ Texture AgaveTexture;
 Texture FlechaTexture;
 Texture albercaTexture;
 
+Texture mariscos;
+Texture puesto;
+Texture mariscos_comida;
+
 Model Kitt_M;
 Model Llanta_M;
 Model Camino_M;
@@ -224,10 +228,10 @@ void CreateObjects()
 	GLfloat cubo_vertices[] = {
 
 		//x		y		z		S		T			NX		NY		NZ
-		-0.5f, -0.5f,  0.5f,	0.26f,  0.35f,		0.0f,	0.0f,	-1.0f,	//0
-		0.5f, -0.5f,  0.5f,		0.49f,	0.35f,		0.0f,	0.0f,	-1.0f,	//1
-		0.5f,  0.5f,  0.5f,		0.49f,	0.65f,		0.0f,	0.0f,	-1.0f,	//2
-		-0.5f,  0.5f,  0.5f,	0.26f,	0.65f,		0.0f,	0.0f,	-1.0f,	//3
+		-0.5f, -0.5f,  0.5f,	0.0f,  0.0f,		0.0f,	0.0f,	-1.0f,	//0
+		0.5f, -0.5f,  0.5f,		1.0f,	0.0f,		0.0f,	0.0f,	-1.0f,	//1
+		0.5f,  0.5f,  0.5f,		1.0f,	1.0f,		0.0f,	0.0f,	-1.0f,	//2
+		-0.5f,  0.5f,  0.5f,	0.0f,	1.0f,		0.0f,	0.0f,	-1.0f,	//3
 		// right
 		//x		y		z		S		T
 		0.5f, -0.5f,  0.5f,	    0.0f,  0.0f,		-1.0f,	0.0f,	0.0f,
@@ -322,8 +326,12 @@ int main()
 	AgaveTexture.LoadTextureA();
 	FlechaTexture = Texture("Textures/flechas.tga");
 	FlechaTexture.LoadTextureA();
-	//albercaTexture = Texture("Textures/      ");
-	//albercaTexture.LoadTextureA();
+	mariscos = Texture("Textures/mariscos.jpg");
+	mariscos.LoadTextureA();
+	puesto = Texture("Textures/puesto_sin_rotulo.jpg");
+	puesto.LoadTextureA();
+	mariscos_comida = Texture("Textures/mariscos_comida.jpg");
+	mariscos_comida.LoadTextureA();
 
 
 	Kitt_M = Model();
@@ -590,14 +598,55 @@ int main()
 
 
 
-		// puesto 1 tortas
+		// puesto  mariscos
 
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -10.0f));
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(-5.0f, -1.0f, -10.0f));
+		modelaux = model;
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
+		// parte superior
+		model = modelaux;
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		mariscos.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// barra
+		model = modelaux;
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// interior
+		model = modelaux;
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		mariscos_comida.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+
+
+
+		// Carro de helados
+
+
 
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(movCoche, 3.0f, 0.0f));
