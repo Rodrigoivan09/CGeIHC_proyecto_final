@@ -69,6 +69,8 @@ Texture pisoTexture;
 Texture AgaveTexture;
 Texture FlechaTexture;
 Texture albercaTexture;
+Texture mariscos;
+Texture puesto;
 
 Model Kitt_M;
 Model Llanta_M;
@@ -222,10 +224,10 @@ void CreateObjects()
 	GLfloat cubo_vertices[] = {
 
 		//x		y		z		S		T			NX		NY		NZ
-		-0.5f, -0.5f,  0.5f,	0.26f,  0.35f,		0.0f,	0.0f,	-1.0f,	//0
-		0.5f, -0.5f,  0.5f,		0.49f,	0.35f,		0.0f,	0.0f,	-1.0f,	//1
-		0.5f,  0.5f,  0.5f,		0.49f,	0.65f,		0.0f,	0.0f,	-1.0f,	//2
-		-0.5f,  0.5f,  0.5f,	0.26f,	0.65f,		0.0f,	0.0f,	-1.0f,	//3
+		-0.5f, -0.5f,  0.5f,	0.0f,  0.0f,		0.0f,	0.0f,	-1.0f,	//0
+		0.5f, -0.5f,  0.5f,		1.0f,	0.0f,		0.0f,	0.0f,	-1.0f,	//1
+		0.5f,  0.5f,  0.5f,		1.0f,	1.0f,		0.0f,	0.0f,	-1.0f,	//2
+		-0.5f,  0.5f,  0.5f,	0.0f,	1.0f,		0.0f,	0.0f,	-1.0f,	//3
 		// right
 		//x		y		z		S		T
 		0.5f, -0.5f,  0.5f,	    0.0f,  0.0f,		-1.0f,	0.0f,	0.0f,
@@ -320,8 +322,10 @@ int main()
 	AgaveTexture.LoadTextureA();
 	FlechaTexture = Texture("Textures/flechas.tga");
 	FlechaTexture.LoadTextureA();
-	//albercaTexture = Texture("Textures/      ");
-	//albercaTexture.LoadTextureA();
+	mariscos = Texture("Textures/mariscos.jpg");
+	mariscos.LoadTextureA();
+	puesto = Texture("Textures/puesto_sin_rotulo.jpg");
+	puesto.LoadTextureA();
 
 
 	Kitt_M = Model();
@@ -557,14 +561,29 @@ int main()
 
 
 
-		// puesto 1 tortas
+		// puesto  mariscos
 
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(-5.0f, 0.0f, -10.0f));
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(-5.0f, -1.0f, -10.0f));
+		modelaux = model;
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
+
+		model = modelaux;
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		mariscos.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+
 
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(movCoche, 3.0f, 0.0f));
