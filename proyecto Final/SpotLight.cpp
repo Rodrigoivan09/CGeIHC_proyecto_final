@@ -54,3 +54,7 @@ void SpotLight::SetPos(glm::vec3 pos)
 SpotLight::~SpotLight()
 {
 }
+void SpotLight::SetDir(glm::vec3 dir)
+{
+	direction = dir;
+}

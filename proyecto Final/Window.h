@@ -19,6 +19,10 @@ public:
 	GLfloat getmueveHeliy() { return heliy; }
 	GLfloat getmueveHeliz() { return heliz; }
 	GLfloat getrecorrido() { return recorrido; }
+	GLfloat getrotJimmy() { return rotJimmy; }
+	GLfloat getrotpatear() { return patear; }
+
+
 	GLint truez() { return ztrue; }
 	bool getShouldClose() {
 		return  glfwWindowShouldClose(mainWindow);}
@@ -40,7 +44,7 @@ private:
 	GLfloat bandera;
 	GLfloat  helix ;
 	GLfloat heliy ;
-	GLfloat heliz ;
+	GLfloat heliz, rotJimmy,patear ;
 	int ztrue;
 	bool mouseFirstMoved;
 	GLfloat recorrido;

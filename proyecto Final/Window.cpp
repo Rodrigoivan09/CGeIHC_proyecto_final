@@ -20,7 +20,8 @@ Window::Window(GLint windowWidth, GLint windowHeight)
 	heliz = 0.0f;
 	ztrue = 0;
 	recorrido = false;
-
+	rotJimmy = 0.0f;
+	patear = 0.0;
 
 
 	for (size_t i = 0; i < 1024; i++)
@@ -113,6 +114,23 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
+
+	if (key == GLFW_KEY_UP)
+	{
+		theWindow->rotJimmy = -90.0f;
+	}
+	if (key == GLFW_KEY_DOWN)
+	{
+		theWindow->rotJimmy = 90.0f;
+	}
+	if (key == GLFW_KEY_RIGHT)
+	{
+		theWindow->rotJimmy = 0.0f;
+	}
+	if (key == GLFW_KEY_LEFT)
+	{
+		theWindow->rotJimmy = 180.0f;
+	}
 	if (key == GLFW_KEY_Y)
 	{
 		theWindow-> muevex += 1.0;
@@ -151,6 +169,11 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 	if (key == GLFW_KEY_X)
 	{
 		theWindow->recorrido = true;
+	}
+
+	if (key == GLFW_KEY_SPACE)
+	{
+		theWindow->patear = true;
 	}
 	if (key >= 0 && key < 1024)
 	{

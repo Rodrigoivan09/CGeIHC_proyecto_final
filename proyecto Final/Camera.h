@@ -15,7 +15,9 @@ public:
 
 	void keyControl(bool* keys, GLfloat deltaTime);
 	void mouseControl(GLfloat xChange, GLfloat yChange);
-
+	void terceraPersonaControl(GLfloat xChange, GLfloat yChange);
+	void terceraPersona(bool* keys, GLfloat deltaTime);
+	void terceraPersona(GLfloat positionx, GLfloat deltaTime);
 	glm::vec3 getCameraPosition();
 	glm::vec3 getCameraDirection();
 	glm::mat4 calculateViewMatrix();
