@@ -59,9 +59,15 @@ float toffsetv = 0.0f;
 
 glm::vec3 PosIni(0.0f, 0.0f, 0.0f);
 float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer = 0, rotBraDer = 0, rotBraIzq = 0, rotRodIzqS = 0, rotRodDerS = 0, rotBraDerS = 0, rotBraIzqS = 0;
-float rotTimmy = 0.0f;
+float rotJimmy = 0.0f;
 bool giroDer = false;
 bool giroIzq = false;
+bool recorrido1 = true;
+bool recorrido2 = false;
+bool recorrido3 = false;
+bool recorrido4 = false;
+bool auxMovJimmy = true;
+
 
 
 Window mainWindow;
@@ -395,6 +401,31 @@ int main()
 	mano_izq = Model();
 	mano_izq.LoadModel("Models/Jimmy/antebrazo_izq.obj");
 
+	/*for (int i = 0; i < MAX_FRAMES; i++)
+	{
+		KeyFrame[i].posX = 0;
+		KeyFrame[i].incX = 0;
+		KeyFrame[i].incY = 0;
+		KeyFrame[i].incZ = 0;
+		KeyFrame[i].rotRodIzq = 0;
+		KeyFrame[i].rotRodDer = 0;
+		KeyFrame[i].rotBraDer = 0;
+		KeyFrame[i].rotBraIzq = 0;
+		KeyFrame[i].rotRodIzqS = 0;
+		KeyFrame[i].rotRodDerS = 0;
+		KeyFrame[i].rotBraDerS = 0;
+		KeyFrame[i].rotBraIzqS = 0;
+		KeyFrame[i].rotIncS = 0;
+		KeyFrame[i].rotInc2S = 0;
+		KeyFrame[i].rotInc3S = 0;
+		KeyFrame[i].rotInc4S = 0;
+		KeyFrame[i].rotInc = 0;
+		KeyFrame[i].rotInc2 = 0;
+		KeyFrame[i].rotInc3 = 0;
+		KeyFrame[i].rotInc4 = 0;
+
+	}*/
+
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
 	skyboxFaces.push_back("Textures/Skybox/skyLf.tga");
@@ -529,6 +560,190 @@ int main()
 	}
 
 
+	//Recorrido Jimmy
+
+	if (mainWindow.getrecorrido())
+	{
+		if (recorrido1)
+		{
+			//posX += 0.5f;
+			rotJimmy = 90.0f;
+			posZ -= 0.009;
+			if (auxMovJimmy)
+			{
+				rotRodDer = 0.0f;
+				rotRodDerS += 0.4f;
+				rotRodIzqS -= 0.4f;
+				rotRodIzq -= 0.5f;
+				rotBraDerS -= 0.4f;
+				rotBraIzqS += 0.4f;
+				if (rotRodDerS > 30)
+				{
+					auxMovJimmy = false;
+
+				}
+			}
+			if (!auxMovJimmy)
+			{
+				rotRodDerS -= 0.4f;
+				rotRodIzqS += 0.4f;
+				rotRodIzq = 0.0f;
+				rotRodDer -= 0.5f;
+				rotBraDerS += 0.4f;
+				rotBraIzqS -= 0.4f;
+				if (rotRodDerS < -30)
+				{
+					auxMovJimmy = true;
+				}
+			}
+			if (posZ < -7.7f)
+			{
+				rotRodDerS = 0.0f;
+				rotRodIzqS = 0.0f;
+				rotRodIzq = 0.0f;
+				rotRodDer = 0.0f;
+				rotBraDerS = 0.0f;
+				rotBraIzqS = 0.0f;
+				recorrido1 = false;
+				//engine->play2D("media/puertaAbre.wav",
+				/*	false, false, true);*/
+				//movPuerta = true;
+				recorrido2 = true;
+			}
+		}
+	/*	if (movPuerta)
+		{
+
+			if (abrirPuerta)
+			{
+				rotPuerta -= 20.0f * deltaTime;
+				if (rotPuerta < -90)
+				{
+					abrirPuerta = false;
+					recorrido2 = true;
+				}
+			}
+		}*/
+		if (recorrido2)
+		{
+			rotRodDerS = 60.0f;
+			rotRodDer = -30.0f;
+			posY += 0.008f;
+			posZ -= 0.008f;
+			printf("Pos y = %f", posY);
+			if (posY > 0.3f)
+			{
+				rotRodDer = 0.0f;
+				rotRodDerS = 0.0f;
+				rotRodIzqS = 60.0f;
+				rotRodIzq = -30.0f;
+				posZ -= 0.008f;
+				posY += 0.008f;
+				printf("pos y = %f", posY);
+				if (posY > 0.75)
+				{
+					rotRodIzqS = 0.0f;
+					rotRodIzq = 0.0f;
+					posZ -= 0.008f;
+					printf("pos z = %f", posZ);
+					if (posZ < -0.5f)
+					{
+						recorrido2 = false;
+						recorrido3 = true;
+					}
+				}
+			}
+		}
+		if (recorrido3)
+		{
+			posZ -= 0.009;
+			if (auxMovJimmy)
+			{
+				rotRodDerS += 0.4f;
+				rotRodIzqS -= 0.4f;
+				rotBraDerS -= 0.4f;
+				rotBraIzqS += 0.4f;
+				if (rotRodDerS > 20)
+				{
+					auxMovJimmy = false;
+
+				}
+			}
+			if (!auxMovJimmy)
+			{
+				//movTimmyZ -+ 0.006f;
+				rotRodDerS -= 0.4f;
+				rotRodIzqS += 0.4f;
+				rotBraDerS += 0.4f;
+				rotBraIzqS -= 0.4f;
+				if (rotRodDerS < -20)
+				{
+					auxMovJimmy = true;
+				}
+			}
+			if (posZ < -11.7f)
+			{
+				rotRodDerS = 0.0f;
+				rotRodIzqS = 0.0f;
+				rotBraDerS = 0.0f;
+				rotBraIzqS = 0.0f;
+				posY = 0.3f;
+				recorrido3 = false;
+				//EspectaculoLuces = true;
+				//cerrarPuerta = true;
+				recorrido4 = true;
+			}
+		}
+		if (recorrido4)
+		{
+			posZ -= 0.009;
+			if (auxMovJimmy)
+			{
+				rotRodDerS += 0.4f;
+				rotRodIzqS -= 0.4f;
+				rotBraDerS -= 0.4f;
+				rotBraIzqS += 0.4f;
+				if (rotRodDerS > 20)
+				{
+					auxMovJimmy = false;
+
+				}
+			}
+			if (!auxMovJimmy)
+			{
+				rotRodDerS -= 0.4f;
+				rotRodIzqS += 0.4f;
+				rotBraDerS += 0.4f;
+				rotBraIzqS -= 0.4f;
+				if (rotRodDerS < -20)
+				{
+					auxMovJimmy = true;
+				}
+			}
+			if (posZ < -17.7f)
+			{
+				rotRodDerS = 0.0f;
+				rotRodIzqS = 0.0f;
+				rotBraDerS = 0.0f;
+				rotBraIzqS = 0.0f;
+				recorrido4 = false;
+				/*engine->play2D("media/puertaCierra.wav",
+					false, false, true);
+				cerrarPuerta = true;*/
+			}
+		}
+		/*if (cerrarPuerta)
+		{
+			rotPuerta += 20.0f * deltaTime;
+			if (rotPuerta > 0)
+			{
+				cerrarPuerta = false;
+				recorrido = false;
+			}
+		}*/
+	}
+
+
 		//Recibir eventos del usuario
 		glfwPollEvents();
 		camera.keyControl(mainWindow.getsKeys(), deltaTime);
@@ -605,9 +820,9 @@ int main()
 
 		//tonco
 		model = glm::mat4(1.0);
-		//model = glm::translate(model, glm::vec3(posX + 1.8f, -2.6f + posY, posZ + 1.9f));
-		model = glm::translate(model, glm::vec3(1.8f, 0.0f,  1.9f));
-		model = glm::rotate(model, rotTimmy * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(posX + 1.8f, -0.5f + posY, posZ + 1.9f));
+		//model = glm::translate(model, glm::vec3(1.8f, 0.0f,  1.9f));
+		model = glm::rotate(model, rotJimmy * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		//Timmy.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		jimmy_tronco.RenderModel();

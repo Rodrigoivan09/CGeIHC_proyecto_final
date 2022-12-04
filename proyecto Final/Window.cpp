@@ -19,6 +19,7 @@ Window::Window(GLint windowWidth, GLint windowHeight)
 	heliy = 0.0f;
 	heliz = 0.0f;
 	ztrue = 0;
+	recorrido = false;
 
 
 
@@ -147,8 +148,10 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 	{
 		theWindow->helix -= 1.0;
 	}
-
-
+	if (key == GLFW_KEY_X)
+	{
+		theWindow->recorrido = true;
+	}
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)

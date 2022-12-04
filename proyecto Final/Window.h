@@ -18,6 +18,7 @@ public:
 	GLfloat getmueveHelix() { return helix; }
 	GLfloat getmueveHeliy() { return heliy; }
 	GLfloat getmueveHeliz() { return heliz; }
+	GLfloat getrecorrido() { return recorrido; }
 	GLint truez() { return ztrue; }
 	bool getShouldClose() {
 		return  glfwWindowShouldClose(mainWindow);}
@@ -42,6 +43,7 @@ private:
 	GLfloat heliz ;
 	int ztrue;
 	bool mouseFirstMoved;
+	GLfloat recorrido;
 	static void ManejaTeclado(GLFWwindow* window, int key, int code, int action, int mode);
 	static void ManejaMouse(GLFWwindow* window, double xPos, double yPos);
 
