@@ -56,6 +56,14 @@ bool avanzaH = true;
 
 float toffsetu = 0.0f;
 float toffsetv = 0.0f;
+
+glm::vec3 PosIni(0.0f, 0.0f, 0.0f);
+float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer = 0, rotBraDer = 0, rotBraIzq = 0, rotRodIzqS = 0, rotRodDerS = 0, rotBraDerS = 0, rotBraIzqS = 0;
+float rotTimmy = 0.0f;
+bool giroDer = false;
+bool giroIzq = false;
+
+
 Window mainWindow;
 std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
@@ -83,6 +91,19 @@ Model Coche;
 Model jimmy;
 Model aku;
 Model shrek;
+
+
+Model jimmy_cabeza;
+Model jimmy_tronco;
+Model pierna_izq;
+Model pierna_izq_abajo;
+Model pierna_der;
+Model pierna_der_abajo;
+Model brazo_izq;
+Model brazo_der;
+Model mano_der;
+Model mano_izq;
+
 
 Skybox skybox;
 
@@ -354,7 +375,25 @@ int main()
 	shrek = Model();
 	shrek.LoadModel("Models/CHARACTER_Shrek.obj");
 
-	
+	//Personaje
+	jimmy_tronco = Model();
+	jimmy_tronco.LoadModel("Models/Jimmy/torzo.obj");
+	pierna_der = Model();
+	pierna_der.LoadModel("Models/Jimmy/pierna_der.obj");
+	pierna_der_abajo = Model();
+	pierna_der_abajo.LoadModel("Models/Jimmy/pie_der.obj");
+	pierna_izq = Model();
+	pierna_izq.LoadModel("Models/Jimmy/pierna_izq.obj");
+	pierna_izq_abajo = Model();
+	pierna_izq_abajo.LoadModel("Models/Jimmy/pie_izq.obj");
+	brazo_der = Model();
+	brazo_der.LoadModel("Models/Jimmy/brazo_der.obj");
+	brazo_izq = Model();
+	brazo_izq.LoadModel("Models/Jimmy/Brazo_izq.obj");
+	mano_der = Model();
+	mano_der.LoadModel("Models/Jimmy/antebrazo_der.obj");
+	mano_izq = Model();
+	mano_izq.LoadModel("Models/Jimmy/antebrazo_izq.obj");
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
@@ -531,8 +570,7 @@ int main()
 		shaderList[0].SetSpotLights(spotLights, spotLightCount);
 
 
-
-
+		glm::mat4 modelauxJimmy(1.0);
 		glm::mat4 model(1.0);
 		glm::mat4 modelaux(1.0);
 		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -550,7 +588,6 @@ int main()
 
 
 
-
 		//·###############################3  JiMMY
 
 		model = glm::mat4(1.0);
@@ -561,6 +598,58 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		jimmy.RenderModel();
+
+		// ######################3      Jimmy Articulado ###############################3
+
+		//Personaje
+
+		//tonco
+		model = glm::mat4(1.0);
+		//model = glm::translate(model, glm::vec3(posX + 1.8f, -2.6f + posY, posZ + 1.9f));
+		model = glm::translate(model, glm::vec3(1.8f, 0.0f,  1.9f));
+		model = glm::rotate(model, rotTimmy * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		//Timmy.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		jimmy_tronco.RenderModel();
+		modelauxJimmy = model;
+		model = glm::translate(model, glm::vec3(0.052f, 0.45f, 2.6f));
+		model = glm::rotate(model, rotRodDerS * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		pierna_der.RenderModel();
+		model = glm::translate(model, glm::vec3(-0.08f, -0.7f, 0.07f));
+		model = glm::rotate(model, rotRodDer * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		pierna_der_abajo.RenderModel();
+		model = modelauxJimmy;
+		model = glm::translate(model, glm::vec3(0.1, 0.537f, 1.731));
+		model = glm::rotate(model, rotRodIzqS * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		pierna_izq.RenderModel();
+		model = glm::translate(model, glm::vec3(-0.07f, -0.82f, -0.08));
+		model = glm::rotate(model, rotRodIzq * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		pierna_izq_abajo.RenderModel();
+		model = modelauxJimmy;
+		model = glm::translate(model, glm::vec3(0.0f, 2.65f, 3.0f));
+		model = glm::rotate(model, rotBraDerS * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, giroDer * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		brazo_der.RenderModel();
+		model = glm::translate(model, glm::vec3(-0.054f, -0.7f, 0.32f));
+		model = glm::rotate(model, rotBraDer * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, giroIzq * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		mano_der.RenderModel();
+		model = modelauxJimmy;
+		model = glm::translate(model, glm::vec3(0.05f, 2.65f, 1.4f));
+		model = glm::rotate(model, rotBraIzqS * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		brazo_izq.RenderModel();
+		model = glm::translate(model, glm::vec3(0.04f, -0.6f, -0.47f));
+		model = glm::rotate(model, rotBraIzq * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		mano_izq.RenderModel();
+		glDisable(GL_BLEND);
 
 		//######################  AKU @@@@@@@@@
 

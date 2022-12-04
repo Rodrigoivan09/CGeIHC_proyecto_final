@@ -1,7 +1,7 @@
 # Blender 3.3.0 MTL File: 'None'
 # www.blender.org
 
-newmtl Material_#95.001
+newmtl Material_#95.002
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.000000 0.000000 0.000000
@@ -9,4 +9,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd C:/Users/ghj_m/source/repos/salazar-io/CGeIHC_proyecto_final/proyecto Final/Models/GJYE78_4983831a_14.png
+map_Kd GJYE78_4983831a_14.png
