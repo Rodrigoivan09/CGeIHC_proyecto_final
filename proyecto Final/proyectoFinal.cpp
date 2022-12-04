@@ -155,6 +155,9 @@ static const char* vShader = "shaders/shader_light.vert";
 // Fragment Shader
 static const char* fShader = "shaders/shader_light.frag";
 
+//PARA INPUT CON KEYFRAMES 
+void inputKeyframes(bool* keys);
+
 //Esfera
 Sphere sp = Sphere(1.0, 10, 10); // esfera radio 1, 20 slices, 20 meridianos
 
@@ -410,13 +413,13 @@ typedef struct _frame
 	float rotInc3S;
 	float rotInc4S;
 
-	//Variables para GUARDAR Key Frames
-	float movAvion_x;		//Variable para PosicionX
-	float movAvion_y;		//Variable para PosicionY
-	float movAvion_xInc;		//Variable para IncrementoX
-	float movAvion_yInc;		//Variable para IncrementoY
-	float giroAvion;
-	float giroAvionInc;
+	////Variables para GUARDAR Key Frames
+	//float movAvion_x;		//Variable para PosicionX
+	//float movAvion_y;		//Variable para PosicionY
+	//float movAvion_xInc;		//Variable para IncrementoX
+	//float movAvion_yInc;		//Variable para IncrementoY
+	//float giroAvion;
+	//float giroAvionInc;
 
 
 }FRAME;
@@ -433,9 +436,9 @@ void saveFrame(void)
 
 	//Practica
 
-	KeyFrame[FrameIndex].movAvion_x = movAvion_x;
+	/*KeyFrame[FrameIndex].movAvion_x = movAvion_x;
 	KeyFrame[FrameIndex].movAvion_y = movAvion_y;
-	KeyFrame[FrameIndex].giroAvion = giroAvion;
+	KeyFrame[FrameIndex].giroAvion = giroAvion;*/
 
 	//############################################33
 
@@ -459,9 +462,9 @@ void resetElements(void)
 {
 	//Practica
 
-	movAvion_x = KeyFrame[0].movAvion_x;
-	movAvion_y = KeyFrame[0].movAvion_y;
-	giroAvion = KeyFrame[0].giroAvion;
+	//movAvion_x = KeyFrame[0].movAvion_x;
+	//movAvion_y = KeyFrame[0].movAvion_y;
+	//giroAvion = KeyFrame[0].giroAvion;
 	//################3333
 
 	posX = KeyFrame[0].posX;
@@ -482,9 +485,9 @@ void interpolation(void)
 {
 
 	//######################
-	KeyFrame[playIndex].movAvion_xInc = (KeyFrame[playIndex + 1].movAvion_x - KeyFrame[playIndex].movAvion_x) / i_max_steps;
+	/*KeyFrame[playIndex].movAvion_xInc = (KeyFrame[playIndex + 1].movAvion_x - KeyFrame[playIndex].movAvion_x) / i_max_steps;
 	KeyFrame[playIndex].movAvion_yInc = (KeyFrame[playIndex + 1].movAvion_y - KeyFrame[playIndex].movAvion_y) / i_max_steps;
-	KeyFrame[playIndex].giroAvionInc = (KeyFrame[playIndex + 1].giroAvion - KeyFrame[playIndex].giroAvion) / i_max_steps;
+	KeyFrame[playIndex].giroAvionInc = (KeyFrame[playIndex + 1].giroAvion - KeyFrame[playIndex].giroAvion) / i_max_steps;*/
     //#########################3
 
 	KeyFrame[playIndex].incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
@@ -532,9 +535,9 @@ void animate(void)
 			//printf("max steps: %f", i_max_steps);
 			//Draw animation
 			//##################333
-			movAvion_x += KeyFrame[playIndex].movAvion_xInc;
+			/*movAvion_x += KeyFrame[playIndex].movAvion_xInc;
 			movAvion_y += KeyFrame[playIndex].movAvion_yInc;
-			giroAvion += KeyFrame[playIndex].giroAvionInc;
+			giroAvion += KeyFrame[playIndex].giroAvionInc;*/
 			//########################
 
 			posX += KeyFrame[playIndex].incX;
@@ -749,7 +752,7 @@ int main()
 	glm::vec3 posblackhawk = glm::vec3(2.0f, 0.0f, 0.0f);
 	//KEYFRAMES DECLARADOS INICIALES
 
-	KeyFrame[0].movAvion_x = 0.0f;
+	/*KeyFrame[0].movAvion_x = 0.0f;
 	KeyFrame[0].movAvion_y = 0.0f;
 	KeyFrame[0].giroAvion = 0;
 
@@ -770,7 +773,7 @@ int main()
 
 	KeyFrame[4].movAvion_x = 4.0f;
 	KeyFrame[4].movAvion_y = 0.0f;
-	KeyFrame[4].giroAvion = 180.0f;
+	KeyFrame[4].giroAvion = 180.0f;*/
 
 
 	//Agregar Kefyrame[5] para que el avión regrese al inicio
@@ -948,7 +951,7 @@ int main()
 			}
 			if (!auxMovJimmy)
 			{
-				//movTimmyZ -+ 0.006f;
+				
 				rotRodDerS -= 0.4f;
 				rotRodIzqS += 0.4f;
 				rotBraDerS += 0.4f;
@@ -1028,6 +1031,8 @@ int main()
 		camera.keyControl(mainWindow.getsKeys(), deltaTime);
 		camera.mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 
+		//para keyframes
+		inputKeyframes(mainWindow.getsKeys());
 		animate();
 
 		// Clear the window
@@ -1505,13 +1510,13 @@ int main()
 		model = glm::mat4(1.0);
 		posblackhawk = glm::vec3(posXavion + movAvion_x, posYavion + movAvion_y, posZavion);
 		model = glm::translate(model, posblackhawk);
-		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
 		model = glm::rotate(model, giroAvion * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, -90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Blackhawk_M.RenderModel();
+		//Blackhawk_M.RenderModel();
 
 		//color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
@@ -1570,244 +1575,244 @@ int main()
 
 	return 0;
 }
-//void inputKeyframes(bool* keys)
-//{
-//	if (keys[GLFW_KEY_SPACE])
-//	{
-//		if (play == false && (FrameIndex > 1))
-//		{
-//			resetElements();
-//			//First Interpolation				
-//			interpolation();
-//			play = true;
-//			playIndex = 0;
-//			i_curr_steps = 0;
-//			//reproduciranimacion++;
-//			printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
-//			//habilitaranimacion = 0;
-//		}
-//		else
-//		{
-//			play = false;
-//		}
-//	}
-//	if (keys[GLFW_KEY_0])
-//	{
-//		if (FrameIndex < MAX_FRAMES)
-//		{
-//			saveFrame();
-//		}
-//	}
-//	if (keys[GLFW_KEY_UP])
-//	{
-//		rotJimmy = 90.0f;
-//		posZ -= 0.5 * deltaTime;
-//		if (!auxMovJimmy)
-//		{
-//			rotRodIzq = 0.0f;
-//			rotRodIzqS += 1.0f;
-//			rotRodDerS -= 1.0f;
-//			rotRodDer -= 0.5f;
-//			rotBraDerS += 1.0f;
-//			rotBraIzqS -= 1.0f;
-//			printf("Rotacion rod Izq: %f", rotRodIzq);
-//			if (rotRodIzqS > 40.0f)
-//			{
-//				auxMovJimmy = true;
-//			}
-//		}
-//		if (auxMovJimmy)
-//		{
-//			rotRodDer = 0.0f;
-//			rotRodIzqS -= 1.0f;
-//			rotRodDerS += 1.0f;
-//			rotRodIzq -= 0.5f;
-//			rotBraDerS -= 1.0f;
-//			rotBraIzqS += 1.0f;
-//			printf("Rotacion rod Der: %f", rotRodDer);
-//			if (rotRodDerS > 40.0f)
-//			{
-//				auxMovJimmy = false;
-//
-//			}
-//		}
-//	}
-//	if (keys[GLFW_KEY_DOWN])
-//	{
-//		rotJimmy = -90.0f;
-//		posZ += 0.5 * deltaTime;
-//		if (!auxMovJimmy)
-//		{
-//			rotRodIzq = 0.0f;
-//			rotRodIzqS += 1.0f;
-//			rotRodDerS -= 1.0f;
-//			rotRodDer -= 0.5f;
-//			rotBraDerS += 1.0f;
-//			rotBraIzqS -= 1.0f;
-//			printf("Rotacion rod Izq: %f", rotRodIzq);
-//			if (rotRodIzqS > 40.0f)
-//			{
-//				auxMovJimmy = true;
-//			}
-//		}
-//		if (auxMovJimmy)
-//		{
-//			rotRodDer = 0.0f;
-//			rotRodIzqS -= 1.0f;
-//			rotRodDerS += 1.0f;
-//			rotRodIzq -= 0.5f;
-//			rotBraDerS -= 1.0f;
-//			rotBraIzqS += 1.0f;
-//			printf("Rotacion rod Der: %f", rotRodDer);
-//			if (rotRodDerS > 40.0f)
-//			{
-//				auxMovJimmy = false;
-//			}
-//		}
-//	}
-//	if (keys[GLFW_KEY_RIGHT])
-//	{
-//		rotJimmy = 0.0f;
-//		posX += 0.5 * deltaTime;
-//		if (!auxMovJimmy)
-//		{
-//			rotRodIzq = 0.0f;
-//			rotRodIzqS += 1.0f;
-//			rotRodDerS -= 1.0f;
-//			rotRodDer -= 0.5f;
-//			rotBraDerS += 1.0f;
-//			rotBraIzqS -= 1.0f;
-//			printf("Rotacion rod Izq: %f", rotRodIzq);
-//			if (rotRodIzqS > 40.0f)
-//			{
-//				auxMovJimmy = true;
-//			}
-//		}
-//		if (auxMovJimmy)
-//		{
-//			rotRodDer = 0.0f;
-//			rotRodIzqS -= 1.0f;
-//			rotRodDerS += 1.0f;
-//			rotRodIzq -= 0.5f;
-//			rotBraDerS -= 1.0f;
-//			rotBraIzqS += 1.0f;
-//			printf("Rotacion rod Der: %f", rotRodDer);
-//			if (rotRodDerS > 40.0f)
-//			{
-//				auxMovJimmy = false;
-//			}
-//		}
-//	}
-//	if (keys[GLFW_KEY_LEFT])
-//	{
-//		rotJimmy = 180.0f;
-//		posX -= 0.5 * deltaTime;
-//		if (!auxMovJimmy)
-//		{
-//			rotRodIzq = 0.0f;
-//			rotRodIzqS += 1.0f;
-//			rotRodDerS -= 1.0f;
-//			rotRodDer -= 0.5f;
-//			rotBraDerS += 1.0f;
-//			rotBraIzqS -= 1.0f;
-//			printf("Rotacion rod Izq: %f", rotRodIzq);
-//			if (rotRodIzqS > 40.0f)
-//			{
-//				auxMovJimmy = true;
-//			}
-//		}
-//		if (auxMovJimmy)
-//		{
-//			rotRodDer = 0.0f;
-//			rotRodIzqS -= 1.0f;
-//			rotRodDerS += 1.0f;
-//			rotRodIzq -= 0.5f;
-//			rotBraDerS -= 1.0f;
-//			rotBraIzqS += 1.0f;
-//			printf("Rotacion rod Der: %f", rotRodDer);
-//			if (rotRodDerS > 40.0f)
-//			{
-//				auxMovJimmy = false;
-//			}
-//		}
-//	}
-//
-//}
-//
 void inputKeyframes(bool* keys)
 {
 	if (keys[GLFW_KEY_SPACE])
 	{
-		if (reproduciranimacion < 1)
+		if (play == false && (FrameIndex > 1))
 		{
-			if (play == false && (FrameIndex > 1))
-			{
-				resetElements();
-				//First Interpolation				
-				interpolation();
-				play = true;
-				playIndex = 0;
-				i_curr_steps = 0;
-				reproduciranimacion++;
-				printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
-				habilitaranimacion = 0;
-
-			}
-			else
-			{
-				play = false;
-			}
+			resetElements();
+			//First Interpolation				
+			interpolation();
+			play = true;
+			playIndex = 0;
+			i_curr_steps = 0;
+			//reproduciranimacion++;
+			printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
+			//habilitaranimacion = 0;
+		}
+		else
+		{
+			play = false;
 		}
 	}
 	if (keys[GLFW_KEY_0])
 	{
-		if (habilitaranimacion < 1)
-		{
-			reproduciranimacion = 0;
-		}
-	}
-
-	if (keys[GLFW_KEY_L])
-	{
-		if (guardoFrame < 1)
+		if (FrameIndex < MAX_FRAMES)
 		{
 			saveFrame();
-			printf("movAvion_x es: %f\n", movAvion_x);
-			//printf("movAvion_y es: %f\n", movAvion_y);
-			printf(" \npresiona P para habilitar guardar otro frame'\n");
-			guardoFrame++;
-			reinicioFrame = 0;
 		}
 	}
-	if (keys[GLFW_KEY_P])
+	if (keys[GLFW_KEY_UP])
 	{
-		if (reinicioFrame < 1)
+		rotJimmy = 90.0f;
+		posZ -= 0.5 * deltaTime;
+		if (!auxMovJimmy)
 		{
-			guardoFrame = 0;
+			rotRodIzq = 0.0f;
+			rotRodIzqS += 1.0f;
+			rotRodDerS -= 1.0f;
+			rotRodDer -= 0.5f;
+			rotBraDerS += 1.0f;
+			rotBraIzqS -= 1.0f;
+			printf("Rotacion rod Izq: %f", rotRodIzq);
+			if (rotRodIzqS > 40.0f)
+			{
+				auxMovJimmy = true;
+			}
+		}
+		if (auxMovJimmy)
+		{
+			rotRodDer = 0.0f;
+			rotRodIzqS -= 1.0f;
+			rotRodDerS += 1.0f;
+			rotRodIzq -= 0.5f;
+			rotBraDerS -= 1.0f;
+			rotBraIzqS += 1.0f;
+			printf("Rotacion rod Der: %f", rotRodDer);
+			if (rotRodDerS > 40.0f)
+			{
+				auxMovJimmy = false;
+
+			}
 		}
 	}
-
-
-	if (keys[GLFW_KEY_1])
+	if (keys[GLFW_KEY_DOWN])
 	{
-		if (ciclo < 1)
+		rotJimmy = -90.0f;
+		posZ += 0.5 * deltaTime;
+		if (!auxMovJimmy)
 		{
-			//printf("movAvion_x es: %f\n", movAvion_x);
-			movAvion_x += 1.0f;
-			printf("\n movAvion_x es: %f\n", movAvion_x);
-			ciclo++;
-			ciclo2 = 0;
-			printf("\n reinicia con 2\n");
+			rotRodIzq = 0.0f;
+			rotRodIzqS += 1.0f;
+			rotRodDerS -= 1.0f;
+			rotRodDer -= 0.5f;
+			rotBraDerS += 1.0f;
+			rotBraIzqS -= 1.0f;
+			printf("Rotacion rod Izq: %f", rotRodIzq);
+			if (rotRodIzqS > 40.0f)
+			{
+				auxMovJimmy = true;
+			}
 		}
-
-	}
-	if (keys[GLFW_KEY_2])
-	{
-		if (ciclo2 < 1)
+		if (auxMovJimmy)
 		{
-			ciclo = 0;
+			rotRodDer = 0.0f;
+			rotRodIzqS -= 1.0f;
+			rotRodDerS += 1.0f;
+			rotRodIzq -= 0.5f;
+			rotBraDerS -= 1.0f;
+			rotBraIzqS += 1.0f;
+			printf("Rotacion rod Der: %f", rotRodDer);
+			if (rotRodDerS > 40.0f)
+			{
+				auxMovJimmy = false;
+			}
+		}
+	}
+	if (keys[GLFW_KEY_RIGHT])
+	{
+		rotJimmy = 0.0f;
+		posX += 0.5 * deltaTime;
+		if (!auxMovJimmy)
+		{
+			rotRodIzq = 0.0f;
+			rotRodIzqS += 1.0f;
+			rotRodDerS -= 1.0f;
+			rotRodDer -= 0.5f;
+			rotBraDerS += 1.0f;
+			rotBraIzqS -= 1.0f;
+			printf("Rotacion rod Izq: %f", rotRodIzq);
+			if (rotRodIzqS > 40.0f)
+			{
+				auxMovJimmy = true;
+			}
+		}
+		if (auxMovJimmy)
+		{
+			rotRodDer = 0.0f;
+			rotRodIzqS -= 1.0f;
+			rotRodDerS += 1.0f;
+			rotRodIzq -= 0.5f;
+			rotBraDerS -= 1.0f;
+			rotBraIzqS += 1.0f;
+			printf("Rotacion rod Der: %f", rotRodDer);
+			if (rotRodDerS > 40.0f)
+			{
+				auxMovJimmy = false;
+			}
+		}
+	}
+	if (keys[GLFW_KEY_LEFT])
+	{
+		rotJimmy = 180.0f;
+		posX -= 0.5 * deltaTime;
+		if (!auxMovJimmy)
+		{
+			rotRodIzq = 0.0f;
+			rotRodIzqS += 1.0f;
+			rotRodDerS -= 1.0f;
+			rotRodDer -= 0.5f;
+			rotBraDerS += 1.0f;
+			rotBraIzqS -= 1.0f;
+			printf("Rotacion rod Izq: %f", rotRodIzq);
+			if (rotRodIzqS > 40.0f)
+			{
+				auxMovJimmy = true;
+			}
+		}
+		if (auxMovJimmy)
+		{
+			rotRodDer = 0.0f;
+			rotRodIzqS -= 1.0f;
+			rotRodDerS += 1.0f;
+			rotRodIzq -= 0.5f;
+			rotBraDerS -= 1.0f;
+			rotBraIzqS += 1.0f;
+			printf("Rotacion rod Der: %f", rotRodDer);
+			if (rotRodDerS > 40.0f)
+			{
+				auxMovJimmy = false;
+			}
 		}
 	}
 
 }
+
+//void inputKeyframes(bool* keys)
+//{
+//	if (keys[GLFW_KEY_SPACE])
+//	{
+//		if (reproduciranimacion < 1)
+//		{
+//			if (play == false && (FrameIndex > 1))
+//			{
+//				resetElements();
+//				//First Interpolation				
+//				interpolation();
+//				play = true;
+//				playIndex = 0;
+//				i_curr_steps = 0;
+//				reproduciranimacion++;
+//				printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
+//				habilitaranimacion = 0;
+//
+//			}
+//			else
+//			{
+//				play = false;
+//			}
+//		}
+//	}
+//	if (keys[GLFW_KEY_0])
+//	{
+//		if (habilitaranimacion < 1)
+//		{
+//			reproduciranimacion = 0;
+//		}
+//	}
+//
+//	if (keys[GLFW_KEY_L])
+//	{
+//		if (guardoFrame < 1)
+//		{
+//			saveFrame();
+//			printf("movAvion_x es: %f\n", movAvion_x);
+//			//printf("movAvion_y es: %f\n", movAvion_y);
+//			printf(" \npresiona P para habilitar guardar otro frame'\n");
+//			guardoFrame++;
+//			reinicioFrame = 0;
+//		}
+//	}
+//	if (keys[GLFW_KEY_P])
+//	{
+//		if (reinicioFrame < 1)
+//		{
+//			guardoFrame = 0;
+//		}
+//	}
+//
+//
+//	if (keys[GLFW_KEY_1])
+//	{
+//		if (ciclo < 1)
+//		{
+//			//printf("movAvion_x es: %f\n", movAvion_x);
+//			movAvion_x += 1.0f;
+//			printf("\n movAvion_x es: %f\n", movAvion_x);
+//			ciclo++;
+//			ciclo2 = 0;
+//			printf("\n reinicia con 2\n");
+//		}
+//
+//	}
+//	if (keys[GLFW_KEY_2])
+//	{
+//		if (ciclo2 < 1)
+//		{
+//			ciclo = 0;
+//		}
+//	}
+//
+//}
 
