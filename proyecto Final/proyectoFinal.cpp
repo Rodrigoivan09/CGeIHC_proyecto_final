@@ -1209,6 +1209,17 @@ int main()
 		puesto.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
+		// tapa 
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 2.5f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 2.0f) * plus);
+		//model = glm::rotate(model, -90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
 		// interior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
@@ -1265,6 +1276,17 @@ int main()
 		puesto.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
+		//tapa
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 2.5f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 2.0f) * plus);
+		//model = glm::rotate(model, -90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
 		// interior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
@@ -1279,11 +1301,12 @@ int main()
 
 
 // puesto  tacos
-
+		glm::mat4 modeltacos(1.0);
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(0.0f, 1.0f, -10.0f) );
 		modelaux = model;
+		modeltacos = model;
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -1306,6 +1329,17 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
 		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		//tapa
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 2.5f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 2.0f) * plus);
+		//model = glm::rotate(model, -90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		puesto.UseTexture();
@@ -1361,6 +1395,17 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
 		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		//tapa
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 2.5f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 2.0f) * plus);
+		//model = glm::rotate(model, -90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		puesto.UseTexture();
@@ -1596,8 +1641,8 @@ int main()
 
 		//textura con movimiento
 		//Importantes porque la variable uniform no podemos modificarla directamente
-		toffsetu += 0.001 * deltaTime;
-		toffsetv += 0.0	  * deltaTime;
+		toffsetu += 0.0 * deltaTime;
+		toffsetv += 0.005 * deltaTime;
 		//para que no se desborde la variable
 		if (toffsetu > 1.0)
 			toffsetu = 0.0;
@@ -1606,30 +1651,30 @@ int main()
 		//printf("\ntfosset %f \n", toffsetu);
 		//pasar a la variable uniform el valor actualizado
 		toffset = glm::vec2(toffsetu, toffsetv);
-
-		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(0.0f, 0.2f, -6.0f));
-		model = glm::rotate(model, 90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		
+	//fuego
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modeltacos;
+		model = glm::translate(model, glm::vec3(-2.0f, 2.0f, 1.7f) * plus);
+		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 0.5f) * plus);
+		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniform2fv(uniformTextureOffset, 1, glm::value_ptr(toffset));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		
-		FlechaTexture.UseTexture();
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		fuego.UseTexture();
 		//Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		meshList[4]->RenderMesh();
+		meshList[3]->RenderMesh();
+		
+		
 		glDisable(GL_BLEND);
-		
-		
-
-
 
 		glUseProgram(0);
 
 		mainWindow.swapBuffers();
 	}
-
 	return 0;
 }
+
 void inputKeyframes(bool* keys)
 {
 	if (keys[GLFW_KEY_SPACE])
