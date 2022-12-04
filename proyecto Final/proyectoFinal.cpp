@@ -1,9 +1,9 @@
 /*
 Semestre 2023-1
-Animación:
-1.- Simple o básica:Por banderas y condicionales
+AnimaciÃ³n:
+1.- Simple o bÃ¡sica:Por banderas y condicionales
 2.- Compleja: Por medio de funciones y algoritmos,Textura Animada.
-4.- Técnicas de Animación: Por Keyframes
+4.- TÃ©cnicas de AnimaciÃ³n: Por Keyframes
 */
 //para cargar imagen
 #define STB_IMAGE_IMPLEMENTATION
@@ -32,7 +32,7 @@ Animación:
 #include"Model.h"
 #include "Skybox.h"
 
-//para iluminación
+//para iluminaciÃ³n
 #include "CommonValues.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
@@ -46,7 +46,7 @@ const float toRadians = 3.14159265f / 180.0f;
 const float PI = 3.14159265f;
 
 
-//variables para animación
+//variables para animaciÃ³n
 float movCoche;
 float movOffset;
 float rotllanta;
@@ -56,7 +56,7 @@ float rotllantaOffset;
 float reproduciranimacion, habilitaranimacion,
 guardoFrame, reinicioFrame, ciclo, ciclo2, contador = 0;
 
-//variables para animación
+//variables para animaciÃ³n
 
 
 float rotheli;
@@ -161,7 +161,7 @@ void inputKeyframes(bool* keys);
 //Esfera
 Sphere sp = Sphere(1.0, 10, 10); // esfera radio 1, 20 slices, 20 meridianos
 
-//cálculo del promedio de las normales para sombreado de Phong
+//cÃ¡lculo del promedio de las normales para sombreado de Phong
 void calcAverageNormals(unsigned int* indices, unsigned int indiceCount, GLfloat* vertices, unsigned int verticeCount,
 	unsigned int vLength, unsigned int normalOffset)
 {
@@ -523,7 +523,7 @@ void animate(void)
 			}
 			else //Next frame interpolations
 			{
-				//printf("entro aquí\n");
+				//printf("entro aquÃ­\n");
 				i_curr_steps = 0; //Reset counter
 				//Interpolation
 				interpolation();
@@ -531,7 +531,7 @@ void animate(void)
 		}
 		else
 		{
-			//printf("se quedó aqui\n");
+			//printf("se quedÃ³ aqui\n");
 			//printf("max steps: %f", i_max_steps);
 			//Draw animation
 			//##################333
@@ -684,13 +684,13 @@ int main()
 	Material_opaco = Material(0.3f, 4);
 
 
-	//luz direccional, sólo 1 y siempre debe de existir
+	//luz direccional, sÃ³lo 1 y siempre debe de existir
 	mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
 		0.3f, 0.3f,
 		0.0f, -1.0f, -1.0f);
 	//contador de luces puntuales
 	unsigned int pointLightCount = 0;
-	//Declaración de primer luz puntual
+	//DeclaraciÃ³n de primer luz puntual
 	pointLights[0] = PointLight(1.0f, 0.0f, 0.0f,
 		0.0f, 1.0f,
 		0.0f, 2.5f, 1.5f,
@@ -716,7 +716,7 @@ int main()
 		15.0f);
 	spotLightCount++;
 
-	//luz de helicóptero
+	//luz de helicÃ³ptero
 	spotLights[2] = SpotLight(1.0f, 1.0f, 1.0f,
 		0.0f, 2.0f,
 		0.0f, 0.0f, 0.0f,
@@ -748,7 +748,7 @@ int main()
 
 	sp.init(); //inicializar esfera
 	sp.load();//enviar la esfera al shader
-
+	glm::vec3 plus = glm::vec3(3.0f,3.0f,3.0f);
 	glm::vec3 posblackhawk = glm::vec3(2.0f, 0.0f, 0.0f);
 	//KEYFRAMES DECLARADOS INICIALES
 
@@ -776,7 +776,7 @@ int main()
 	KeyFrame[4].giroAvion = 180.0f;*/
 
 
-	//Agregar Kefyrame[5] para que el avión regrese al inicio
+	//Agregar Kefyrame[5] para que el aviÃ³n regrese al inicio
 
 
 
@@ -812,7 +812,7 @@ int main()
 
 
 // animacion helicopter
-	GLfloat angleH = -30.0f; //angulo de inclinación al frente
+	GLfloat angleH = -30.0f; //angulo de inclinaciÃ³n al frente
 
 	if (avanzaH) {
 		if (!(movheli > -300.0f)) 
@@ -1047,7 +1047,7 @@ int main()
 		uniformColor = shaderList[0].getColorLocation();
 		uniformTextureOffset = shaderList[0].getOffsetLocation();
 
-		//información en el shader de intensidad especular y brillo
+		//informaciÃ³n en el shader de intensidad especular y brillo
 		uniformSpecularIntensity = shaderList[0].GetSpecularIntensityLocation();
 		uniformShininess = shaderList[0].GetShininessLocation();
 
@@ -1055,17 +1055,18 @@ int main()
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.calculateViewMatrix()));
 		glUniform3f(uniformEyePosition, camera.getCameraPosition().x, camera.getCameraPosition().y, camera.getCameraPosition().z);
 
-		// luz ligada a la cámara de tipo flash
+		// luz ligada a la cÃ¡mara de tipo flash
 		glm::vec3 lowerLight = camera.getCameraPosition();
 		lowerLight.y -= 0.3f;
 		spotLights[0].SetFlash(lowerLight, camera.getCameraDirection());
 
 
-		glm::vec3 helicopter(0.0f, 3.0f, movheli);
-		spotLights[2].SetFlash(helicopter, glm::vec3(0.0f, -1.0f, 0.0f));
-		spotLights[2].SetPos(helicopter);
+	//luz del carro de helado
+		glm::vec3 helados(movCoche, 16.0f , 15.0f);
+		spotLights[2].SetFlash(helados, glm::vec3(0.0f, -1.0f, 0.0f));
+		spotLights[2].SetPos(helados);
 
-		//información al shader de fuentes de iluminación
+		//informaciÃ³n al shader de fuentes de iluminaciÃ³n
 		shaderList[0].SetDirectionalLight(&mainLight);
 		shaderList[0].SetPointLights(pointLights, pointLightCount);
 		shaderList[0].SetSpotLights(spotLights, spotLightCount);
@@ -1089,7 +1090,7 @@ int main()
 
 
 
-		//·###############################3  JiMMY
+		//Â·###############################3  JiMMY
 
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(30, -2.0f, 0.0f));
@@ -1179,9 +1180,9 @@ int main()
 
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(-20.0f, -1.0f, -10.0f));
+		model = glm::translate(model, glm::vec3(-60.0f, 1.0f, -10.0f));
 		modelaux = model;
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		puesto.UseTexture();
@@ -1190,8 +1191,8 @@ int main()
 		// parte superior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		tortas_rotulo.UseTexture();
@@ -1200,8 +1201,8 @@ int main()
 		// barra
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -1211,8 +1212,8 @@ int main()
 		// interior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		tortas_front.UseTexture();
@@ -1221,8 +1222,8 @@ int main()
 		// rotulo sandra cuevas
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f));
+		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		rotulo_represion.UseTexture();
@@ -1235,9 +1236,9 @@ int main()
 
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(-10.0f, -1.0f, -10.0f));
+		model = glm::translate(model, glm::vec3(-30.0f, 1.0f, -10.0f));
 		modelaux = model;
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		puesto.UseTexture();
@@ -1246,8 +1247,8 @@ int main()
 		// parte superior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		mariscos.UseTexture();
@@ -1256,8 +1257,8 @@ int main()
 		// barra
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -1267,8 +1268,8 @@ int main()
 		// interior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		mariscos_comida.UseTexture();
@@ -1281,9 +1282,9 @@ int main()
 
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(0.0f, -1.0f, -10.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, -10.0f) );
 		modelaux = model;
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		puesto.UseTexture();
@@ -1292,8 +1293,8 @@ int main()
 		// parte superior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		tacos_rotulo.UseTexture();
@@ -1302,8 +1303,8 @@ int main()
 		// barra
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
-		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -1313,18 +1314,18 @@ int main()
 		// interior
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
-		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		tacos_front.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
-		// rotulo sandra cuevas
+		// rotulo mini
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f));
+		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		tacos_rotulo_mini.UseTexture();
@@ -1332,15 +1333,69 @@ int main()
 		meshList[5]->RenderMesh();
 
 
+// puesto  jugos
 
-		// Carro de helados
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(30.0f, 1.0f, -10.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// parte superior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		jugos_rotulo.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// barra
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f) * plus);
+		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// interior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f) * plus);
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f) * plus);
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		jugos_front.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// rotulo mini
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f) * plus);
+		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f) * plus);
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		jugos_mini.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+
+
+// Carro de helados
 		//rectangulo 1 (caja)
 		model = glm::mat4(1.0);
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
-		model = glm::translate(model, glm::vec3(movCoche, -1.0f, 20.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::translate(model, glm::vec3(movCoche, 0.0f, 30.0f) ); //posicionando al escenario, retrocedemos la camara para ver la figura
 		modelaux = model;
-		model = glm::translate(model, glm::vec3(0.5f, 0.25f, -5.0f));
-		model = glm::scale(model, glm::vec3(2.5f, 1.25f, 1.0f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(0.5f, 0.25f, -5.0f) * plus);
+		model = glm::scale(model, glm::vec3(2.5f, 1.25f, 1.0f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
@@ -1348,84 +1403,84 @@ int main()
 		meshList[5]->RenderMesh(); // dibujando cubo
 
 
-// rectangulo 3 (motor)
+		// rectangulo 3 (motor)
 		color = glm::vec3(0.3f, 0.6f, 0.5f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.2f, 0.01f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(1.2f, 0.65f, 1.0f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.2f, 0.01f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(1.2f, 0.65f, 1.0f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-// rectangulo 4 (cabina)
+		// rectangulo 4 (cabina)
 		color = glm::vec3(0.3f, 0.6f, 0.5f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.0f, 0.4f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.7f, 0.6f, 1.0f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.0f, 0.4f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.7f, 0.6f, 1.0f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-// rectangulo 5 (ventanas)
+		// rectangulo 5 (ventanas)
 		color = glm::vec3(0.0f, 0.1f, 1.0f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.0f, 0.45f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.35f, 0.3f, 1.001f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.0f, 0.45f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.35f, 0.3f, 1.001f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-// rectangulo 6 (parabrisas)
+		// rectangulo 6 (parabrisas)
 		color = glm::vec3(0.0f, 0.1f, 1.0f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.4f, 0.45f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.01f, 0.3f, 0.8f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.4f, 0.45f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.01f, 0.3f, 0.8f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-// rectangulo 7 (luz izq)
+		// rectangulo 7 (luz izq)
 		color = glm::vec3(1.0f, 1.0f, 0.0f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.8f, 0.1f, -5.28f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.01f, 0.25f, 0.25f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.8f, 0.1f, -5.28f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.01f, 0.25f, 0.25f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-// rectangulo 8 (luz der)
+		// rectangulo 8 (luz der)
 		color = glm::vec3(1.0f, 1.0f, 0.0f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.8f, 0.1f, -4.72f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.01f, 0.25f, 0.25f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(2.8f, 0.1f, -4.72f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.01f, 0.25f, 0.25f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[5]->RenderMesh(); // dibujando cubo
 
-//cono helado
+		//cono helado
 		color = glm::vec3(0.6f, 0.29f, 0.0f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.3f, 1.0f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.6f, 1.2f, 0.6f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(0.3f, 1.0f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.6f, 1.2f, 0.6f) * plus); // escalando figuras
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		meshList[6]->RenderMesh(); // dibujando piramide
 
-//  helado
+		//bola helado
 		color = glm::vec3(1.0f, 0.4f, 0.69f);  // declarando el color magenta al objeto
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(0.3f, 1.8f, -5.0f)); //posicionando al escenario, retrocedemos la camara para ver la figura
-		model = glm::scale(model, glm::vec3(0.45f, 0.45f, 0.45f)); // escalando figuras
+		model = glm::translate(model, glm::vec3(0.3f, 1.8f, -5.0f) * plus); //posicionando al escenario, retrocedemos la camara para ver la figura
+		model = glm::scale(model, glm::vec3(0.45f, 0.45f, 0.45f) * plus); // escalando figuras
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));//FALSE ES PARA QUE NO SEA TRANSPUESTA
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		sp.render(); //Renderiza esfera
 
 		//llantas coche de helados
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(-0.1f, -0.25f, -4.45f));
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f));
+		model = glm::translate(model, glm::vec3(-0.1f, -0.25f, -4.45f) * plus);
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, -1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
@@ -1433,16 +1488,16 @@ int main()
 		Llanta_M.RenderModel();
 
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(-0.1f, -0.25f, -5.5f));
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f));
+		model = glm::translate(model, glm::vec3(-0.1f, -0.25f, -5.5f) * plus);
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f) * plus);
 		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		Llanta_M.RenderModel();
 
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.0f, -0.25f, -4.45f));
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f));
+		model = glm::translate(model, glm::vec3(2.0f, -0.25f, -4.45f) * plus);
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f) * plus);
 		model = glm::rotate(model, 180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, -1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
@@ -1450,8 +1505,8 @@ int main()
 		Llanta_M.RenderModel();
 
 		model = modelaux;
-		model = glm::translate(model, glm::vec3(2.0f, -0.25f, -5.5f));
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f));
+		model = glm::translate(model, glm::vec3(2.0f, -0.25f, -5.5f) * plus);
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.006f) * plus);
 		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
@@ -1526,7 +1581,7 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Camino_M.RenderModel();
 
-		//Agave ¿qué sucede si lo renderizan antes del coche y de la pista?
+		//Agave Â¿quÃ© sucede si lo renderizan antes del coche y de la pista?
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(0.0f, 0.5f, -2.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
@@ -1588,7 +1643,7 @@ void inputKeyframes(bool* keys)
 			playIndex = 0;
 			i_curr_steps = 0;
 			//reproduciranimacion++;
-			printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
+			printf("\n presiona 0 para habilitar reproducir de nuevo la animaciÃ³n'\n");
 			//habilitaranimacion = 0;
 		}
 		else
@@ -1754,7 +1809,7 @@ void inputKeyframes(bool* keys)
 //				playIndex = 0;
 //				i_curr_steps = 0;
 //				reproduciranimacion++;
-//				printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
+//				printf("\n presiona 0 para habilitar reproducir de nuevo la animaciÃ³n'\n");
 //				habilitaranimacion = 0;
 //
 //			}
