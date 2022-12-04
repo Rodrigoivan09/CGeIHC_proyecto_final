@@ -75,6 +75,9 @@ Texture mariscos;
 Texture puesto;
 Texture mariscos_comida;
 Texture helados_caja;
+Texture tortas_rotulo;
+Texture tortas_front;
+Texture rotulo_represion;
 
 Model Kitt_M;
 Model Llanta_M;
@@ -360,6 +363,13 @@ int main()
 	helados_caja = Texture("Textures/helados_caja.jpg");
 	helados_caja.LoadTextureA();
 
+	tortas_rotulo = Texture("Textures/tortas_rotulo.jpg");
+	tortas_rotulo.LoadTextureA();
+	tortas_front = Texture("Textures/tortas_front.png");
+	tortas_front.LoadTextureA();
+	rotulo_represion = Texture("Textures/rotulo_SC.png");
+	rotulo_represion.LoadTextureA();
+
 	Kitt_M = Model();
 	Kitt_M.LoadModel("Models/kitt_optimizado.obj");
 	Llanta_M = Model();
@@ -615,6 +625,60 @@ int main()
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		shrek.RenderModel();
 
+
+		// puesto  tortas
+
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-20.0f, -1.0f, -10.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// parte superior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		tortas_rotulo.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// barra
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// interior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		tortas_front.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// rotulo sandra cuevas
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		rotulo_represion.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
 
 
 
