@@ -104,6 +104,9 @@ Texture helados_caja;
 Texture tortas_rotulo;
 Texture tortas_front;
 Texture rotulo_represion;
+Texture tacos_rotulo;
+Texture tacos_front;
+Texture tacos_rotulo_mini;
 
 Model Kitt_M;
 Model Llanta_M;
@@ -284,7 +287,7 @@ void CreateObjects()
 		0.5f,  0.5f,  -0.5f,	1.0f,	1.0f,		-1.0f,	0.0f,	0.0f,
 		0.5f,  0.5f,  0.5f,	    0.0f,	1.0f,		-1.0f,	0.0f,	0.0f,
 		// back
-		-0.5f, -0.5f, -0.5f,	0.0f,  0.0f,		0.0f,	0.0f,	1.0f,
+		-0.5f, -0.5f, -0.5f,	0.0f,   0.0f,		0.0f,	0.0f,	1.0f,
 		0.5f, -0.5f, -0.5f,		1.0f,	0.0f,		0.0f,	0.0f,	1.0f,
 		0.5f,  0.5f, -0.5f,		1.0f,	1.0f,		0.0f,	0.0f,	1.0f,
 		-0.5f,  0.5f, -0.5f,	0.0f,	1.0f,		0.0f,	0.0f,	1.0f,
@@ -591,6 +594,13 @@ int main()
 	tortas_front.LoadTextureA();
 	rotulo_represion = Texture("Textures/rotulo_SC.png");
 	rotulo_represion.LoadTextureA();
+
+	tacos_front = Texture("Textures/tacos_front.png");
+	tacos_front.LoadTextureA();
+	tacos_rotulo = Texture("Textures/tacos_rotulo.png");
+	tacos_rotulo.LoadTextureA();
+	tacos_rotulo_mini = Texture("Textures/rotulo_tacos.png");
+	tacos_rotulo_mini.LoadTextureA();
 
 	Kitt_M = Model();
 	Kitt_M.LoadModel("Models/kitt_optimizado.obj");
@@ -1160,7 +1170,7 @@ int main()
 		shrek.RenderModel();
 
 
-		// puesto  tortas
+// puesto  tortas
 
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
@@ -1216,7 +1226,7 @@ int main()
 
 
 
-		// puesto  mariscos
+// puesto  mariscos
 
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		model = glm::mat4(1.0);
@@ -1257,6 +1267,62 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		mariscos_comida.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+
+
+
+// puesto  tacos
+
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(0.0f, -1.0f, -10.0f));
+		modelaux = model;
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// parte superior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		tacos_rotulo.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// barra
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 2.0f));
+		model = glm::scale(model, glm::vec3(5.0f, 0.1f, 1.0f));
+		model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puesto.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// interior
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 1.505f));
+		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		tacos_front.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[5]->RenderMesh();
+		// rotulo sandra cuevas
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modelaux;
+		model = glm::translate(model, glm::vec3(2.5001f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		tacos_rotulo_mini.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
 
