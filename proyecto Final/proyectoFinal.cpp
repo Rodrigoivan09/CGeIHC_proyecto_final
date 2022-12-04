@@ -67,7 +67,7 @@ bool recorrido2 = false;
 bool recorrido3 = false;
 bool recorrido4 = false;
 bool auxMovJimmy = true;
-
+bool keys[1024];
 
 
 Window mainWindow;
@@ -401,7 +401,7 @@ int main()
 	mano_izq = Model();
 	mano_izq.LoadModel("Models/Jimmy/antebrazo_izq.obj");
 
-	/*for (int i = 0; i < MAX_FRAMES; i++)
+	for (int i = 0; i < MAX_FRAMES; i++)
 	{
 		KeyFrame[i].posX = 0;
 		KeyFrame[i].incX = 0;
@@ -424,7 +424,7 @@ int main()
 		KeyFrame[i].rotInc3 = 0;
 		KeyFrame[i].rotInc4 = 0;
 
-	}*/
+	}
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/skyRt.tga");
