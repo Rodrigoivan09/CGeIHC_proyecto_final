@@ -121,6 +121,10 @@ Texture rotulo_represion;
 Texture tacos_rotulo;
 Texture tacos_front;
 Texture tacos_rotulo_mini;
+Texture jugos_rotulo;
+Texture jugos_front;
+Texture jugos_mini;
+Texture fuego;
 
 Model Kitt_M;
 Model Llanta_M;
@@ -665,6 +669,13 @@ int main()
 	tacos_rotulo_mini = Texture("Textures/rotulo_tacos.png");
 	tacos_rotulo_mini.LoadTextureA();
 
+	jugos_rotulo = Texture("Textures/jugos_rotulo.png");
+	jugos_rotulo.LoadTextureA();
+	jugos_front = Texture("Textures/jugos_front.png");
+	jugos_front.LoadTextureA();
+	jugos_mini = Texture("Textures/jugos_rotulo_mino.png");
+	jugos_mini.LoadTextureA();
+
 	Kitt_M = Model();
 	Kitt_M.LoadModel("Models/kitt_optimizado.obj");
 	Llanta_M = Model();
@@ -782,7 +793,7 @@ int main()
 		15.0f);
 	spotLightCount++;
 
-	//luz de helicóptero
+	
 	spotLights[2] = SpotLight(1.0f, 1.0f, 1.0f,
 		0.0f, 2.0f,
 		0.0f, 0.0f, 0.0f,
