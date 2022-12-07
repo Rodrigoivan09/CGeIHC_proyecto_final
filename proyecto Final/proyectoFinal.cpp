@@ -1,9 +1,8 @@
 /*
 Semestre 2023-1
-Animación:
-1.- Simple o básica:Por banderas y condicionales
-2.- Compleja: Por medio de funciones y algoritmos,Textura Animada.
-4.- Técnicas de Animación: Por Keyframes
+Proyecto final computacion grafica e interaccion humano computadora
+olvera martinez rodrigo ivan
+Salazar serrano edgar
 */
 //para cargar imagen
 #define STB_IMAGE_IMPLEMENTATION
