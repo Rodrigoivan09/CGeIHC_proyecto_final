@@ -121,6 +121,10 @@ Texture rotulo_represion;
 Texture tacos_rotulo;
 Texture tacos_front;
 Texture tacos_rotulo_mini;
+Texture jugos_rotulo;
+Texture jugos_front;
+Texture jugos_mini;
+Texture fuego;
 
 Model Kitt_M;
 Model Llanta_M;
@@ -664,6 +668,16 @@ int main()
 	tacos_rotulo.LoadTextureA();
 	tacos_rotulo_mini = Texture("Textures/rotulo_tacos.png");
 	tacos_rotulo_mini.LoadTextureA();
+
+	jugos_rotulo = Texture("Textures/jugos_rotulo.jpeg");
+	jugos_rotulo.LoadTextureA();
+	jugos_front = Texture("Textures/jugos_front.jpeg");
+	jugos_front.LoadTextureA();
+	jugos_mini = Texture("Textures/jugos_rotulo_mino.jpeg");
+	jugos_mini.LoadTextureA();
+
+	fuego = Texture("Textures/fuego.jpg");
+	fuego.LoadTextureA();
 
 	Kitt_M = Model();
 	Kitt_M.LoadModel("Models/kitt_optimizado.obj");
@@ -1226,19 +1240,6 @@ int main()
 			
 			}
 		}
-	/*	if (movPuerta)
-		{
-
-			if (abrirPuerta)
-			{
-				rotPuerta -= 20.0f * deltaTime;
-				if (rotPuerta < -90)
-				{
-					abrirPuerta = false;
-					recorrido2 = true;
-				}
-			}
-		}*/
 		if (recorrido2)
 		{
 			rotRodDerS = 60.0f;
@@ -1627,6 +1628,8 @@ int main()
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(0.0f, 1.0f, -25.0f) );
 		modelaux = model;
+		 glm::mat4 modeltacos(1.0);
+		modeltacos = model;
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -1716,7 +1719,7 @@ int main()
 		model = glm::scale(model, glm::vec3(5.0f, 2.0f, 0.001f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
-		//jugos_front.UseTexture();
+		jugos_front.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
 		// rotulo mini
@@ -1726,7 +1729,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.001f, 2.0f, 3.0f) * plus);
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
-		//jugos_mini.UseTexture();
+		jugos_mini.UseTexture();
 		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[5]->RenderMesh();
 
@@ -1858,53 +1861,6 @@ int main()
 		color = glm::vec3(1.0f, 1.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 
-//  Coche
-		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(movCoche, 3.0f, 0.0f));
-		modelaux = model;
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-		model = glm::rotate(model, -90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Coche.RenderModel();
-
-
-
-		model = modelaux;
-		model = glm::translate(model, glm::vec3(-8.0, -1.5f, 3.0f));
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.03f));
-		model = glm::rotate(model, 180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, -1.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Llanta_M.RenderModel();
-
-		model = modelaux;
-		model = glm::translate(model, glm::vec3(-8.0, -1.5f, -3.0f));
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.03f));
-		//model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Llanta_M.RenderModel();
-
-		model = modelaux;
-		model = glm::translate(model, glm::vec3(5.5, -1.5f, 3.5f));
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.03f));
-		model = glm::rotate(model, 180 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, -1.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Llanta_M.RenderModel();
-		model = modelaux;
-		model = glm::translate(model, glm::vec3(5.5, -1.5f, -3.0f));
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.03f));
-		//model = glm::rotate(model, 90 * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, rotllanta * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		Llanta_M.RenderModel();
-
 		
 
 		//color = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -1915,17 +1871,6 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		Camino_M.RenderModel();
 
-		//Agave ¿qué sucede si lo renderizan antes del coche y de la pista?
-		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(0.0f, 0.5f, -2.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		//blending: transparencia o traslucidez
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		AgaveTexture.UseTexture();
-		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		meshList[3]->RenderMesh();
 
 
 		// ############### PRACTICA Keys
@@ -1965,16 +1910,31 @@ int main()
 		//pasar a la variable uniform el valor actualizado
 		toffset = glm::vec2(toffsetu, toffsetv);
 
-		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(0.0f, 0.2f, -6.0f));
-		model = glm::rotate(model, 90 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		//textura con movimiento
+		//Importantes porque la variable uniform no podemos modificarla directamente
+		toffsetu += 0.0 * deltaTime;
+		toffsetv -= 0.01 * deltaTime;
+		//para que no se desborde la variable
+		if (toffsetu > 1.0)
+			toffsetu = 0.0;
+		if (toffsetv > 1.0)
+			toffsetv = 0;
+		//printf("\ntfosset %f \n", toffsetu);
+		//pasar a la variable uniform el valor actualizado
+		toffset = glm::vec2(toffsetu, toffsetv);
+
+		//fuego
+		color = glm::vec3(1.0f, 1.0f, 1.0f);
+		model = modeltacos;
+		model = glm::translate(model, glm::vec3(-2.0f, 2.0f, 1.7f) * plus);
+		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 0.5f) * plus);
+		//model = glm::rotate(model, 180 * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniform2fv(uniformTextureOffset, 1, glm::value_ptr(toffset));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		
-		FlechaTexture.UseTexture();
-		//Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
-		meshList[4]->RenderMesh();
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		fuego.UseTexture();
+		Material_brillante.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[3]->RenderMesh();
 		glDisable(GL_BLEND);
 		
 		
@@ -2159,11 +2119,21 @@ void inputKeyframes1(bool* keys)
 bool c = false;
 void inputKeyframesAudio(bool* keys){
 	if (keys[GLFW_KEY_C] && c == false ){
-		SoundEngine->play2D("media/conteo.mp3",c);
-		SoundEngine->play2D("media/conteo.mp3", c);
+		//SoundEngine->play2D("media/conteo.mp3",c);
+		//SoundEngine->play2D("media/conteo.mp3", c);
 	}
 	
 }
+
+void inputKeyframesAudioH(bool* keys) {
+	if ( movCoche < 0.0f) {
+		//SoundEngine->play2D("media/helados.mp3", c);
+		//SoundEngine->play2D("media/helados.mp3", c);
+	}
+
+}
+
+
 
 void inputKeyframes(bool* keys)
 {
@@ -2172,7 +2142,8 @@ void inputKeyframes(bool* keys)
 		if (reproduciranimacion < 1)
 		{
 			if (play == false && (FrameIndex > 1))
-			{
+			{   
+				SoundEngine->play2D("media/conteo.mp3", c);
 				resetElements();
 				//First Interpolation				
 				interpolation();
@@ -2242,83 +2213,4 @@ void inputKeyframes(bool* keys)
 
 }
 
-
-
-//
-//void inputKeyframes2(bool* keys)
-//{
-//	if (keys[GLFW_KEY_SPACE])
-//	{
-//		if (reproduciranimacion < 1)
-//		{
-//			if (play == false && (FrameIndex > 1))
-//			{
-//				resetElements();
-//				//First Interpolation				
-//				interpolation();
-//				play = true;
-//				playIndex = 0;
-//				i_curr_steps = 0;
-//				reproduciranimacion++;
-//				printf("\n presiona 0 para habilitar reproducir de nuevo la animación'\n");
-//				habilitaranimacion = 0;
-//
-//			}
-//			else
-//			{
-//				play = false;
-//			}
-//		}
-//	}
-//	if (keys[GLFW_KEY_0])
-//	{
-//		if (habilitaranimacion < 1)
-//		{
-//			reproduciranimacion = 0;
-//		}
-//	}
-//
-//	if (keys[GLFW_KEY_L])
-//	{
-//		if (guardoFrame < 1)
-//		{
-//			saveFrame();
-//			printf("movAvion_x es: %f\n", movAvion_x);
-//			//printf("movAvion_y es: %f\n", movAvion_y);
-//			printf(" \npresiona P para habilitar guardar otro frame'\n");
-//			guardoFrame++;
-//			reinicioFrame = 0;
-//		}
-//	}
-//	if (keys[GLFW_KEY_P])
-//	{
-//		if (reinicioFrame < 1)
-//		{
-//			guardoFrame = 0;
-//		}
-//	}
-//
-//
-//	if (keys[GLFW_KEY_1])
-//	{
-//		if (ciclo < 1)
-//		{
-//			//printf("movAvion_x es: %f\n", movAvion_x);
-//			movAvion_x += 1.0f;
-//			printf("\n movAvion_x es: %f\n", movAvion_x);
-//			ciclo++;
-//			ciclo2 = 0;
-//			printf("\n reinicia con 2\n");
-//		}
-//
-//	}
-//	if (keys[GLFW_KEY_2])
-//	{
-//		if (ciclo2 < 1)
-//		{
-//			ciclo = 0;
-//		}
-//	}
-//
-//}
 
