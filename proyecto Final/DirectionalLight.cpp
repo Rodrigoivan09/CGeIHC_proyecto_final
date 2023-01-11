@@ -20,6 +20,13 @@ void DirectionalLight::UseLight(GLfloat ambientIntensityLocation, GLfloat ambien
 
 	glUniform3f(directionLocation, direction.x, direction.y, direction.z);
 	glUniform1f(diffuseIntensityLocation, diffuseIntensity);
+
+}
+
+void DirectionalLight::SetDiaNoche(glm::vec3 col)
+{
+	color = col;
+
 }
 
 DirectionalLight::~DirectionalLight()

@@ -126,6 +126,9 @@
     <ClInclude Include="ik_vec3d.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Toroide.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -165,6 +168,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Toroide.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="proyectoFinal.cpp">

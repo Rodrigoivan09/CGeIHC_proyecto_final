@@ -13,6 +13,8 @@ public:
 	void UseLight(GLfloat ambientIntensityLocation, GLfloat ambientcolorLocation,
 		GLfloat diffuseIntensityLocation, GLfloat directionLocation);
 
+	void SetDiaNoche(glm::vec3 color);
+
 	~DirectionalLight();
 
 private:

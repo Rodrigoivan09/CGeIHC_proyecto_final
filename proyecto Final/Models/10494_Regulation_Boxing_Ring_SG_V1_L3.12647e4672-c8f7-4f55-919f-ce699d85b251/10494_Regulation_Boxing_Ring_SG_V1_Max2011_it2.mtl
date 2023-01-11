@@ -1,0 +1,12 @@
+# Blender 3.3.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Regulation_Boxing_Ring_Diffuse_SG
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Regulation_Boxing_Ring_V1_Diffuse_SG.jpg

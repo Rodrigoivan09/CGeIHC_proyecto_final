@@ -1,0 +1,292 @@
+# Blender 3.3.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Belt_bracket.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sf.png
+map_d saitama/source/Saitama2/sf.png
+
+newmtl Blood_run.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao2.png
+map_d saitama/source/Saitama2/kao2.png
+
+newmtl Bonding.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/fuku.png
+map_d saitama/source/Saitama2/fuku.png
+
+newmtl Bridge_under.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/fuku2.png
+map_d saitama/source/Saitama2/fuku2.png
+
+newmtl Cloak.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/fuku2.png
+map_d saitama/source/Saitama2/fuku2.png
+
+newmtl Color_shadow.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao2.png
+map_d saitama/source/Saitama2/kao2.png
+
+newmtl Eye_line.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Handbags.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sf.png
+map_d saitama/source/Saitama2/sf.png
+
+newmtl Left_pupil.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Mant_fittings.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sftama.png
+map_d saitama/source/Saitama2/sftama.png
+
+newmtl Pupil_light.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao2.png
+map_d saitama/source/Saitama2/kao2.png
+
+newmtl Right_pupil.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Shoe_sole.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/fuku.png
+map_d saitama/source/Saitama2/fuku.png
+
+newmtl Sweat.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Teeth_1.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Teeth_2.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Tether_collar.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/fuku.png
+map_d saitama/source/Saitama2/fuku.png
+
+newmtl Under_facial_jaw.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl Yan_Ying_2.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao2.png
+map_d saitama/source/Saitama2/kao2.png
+
+newmtl Zipper_fittings.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sf.png
+map_d saitama/source/Saitama2/sf.png
+
+newmtl belt.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sfberuto.png
+map_d saitama/source/Saitama2/sfberuto.png
+
+newmtl body.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl boots.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sf.png
+map_d saitama/source/Saitama2/sf.png
+
+newmtl eyebrow.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl face.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl left_eye.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl right_eye.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl tongue.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/kao.png
+map_d saitama/source/Saitama2/kao.png
+
+newmtl zipper.001
+Ns 96.078415
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 9
+map_Kd saitama/source/Saitama2/sf.png
+map_d saitama/source/Saitama2/sf.png
